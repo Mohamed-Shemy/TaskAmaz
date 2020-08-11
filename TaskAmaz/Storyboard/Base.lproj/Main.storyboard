@@ -1,24 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="TaskAmaz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgV-Zk-OeO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wd-Xj-AIL" customClass="iView" customModule="TaskAmaz" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="5" width="339" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="search..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hQC-Ww-YYV">
+                                                <rect key="frame" x="10" y="0.0" width="319" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hQC-Ww-YYV" secondAttribute="bottom" id="HlY-6L-Jmh"/>
+                                            <constraint firstItem="hQC-Ww-YYV" firstAttribute="leading" secondItem="8wd-Xj-AIL" secondAttribute="leading" constant="10" id="iwH-UN-K8X"/>
+                                            <constraint firstAttribute="trailing" secondItem="hQC-Ww-YYV" secondAttribute="trailing" constant="10" id="wLh-sw-rDP"/>
+                                            <constraint firstItem="hQC-Ww-YYV" firstAttribute="top" secondItem="8wd-Xj-AIL" secondAttribute="top" id="zBx-AJ-Qay"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="879-Wg-tao">
+                                        <rect key="frame" x="354" y="10" width="50" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="QaC-2q-Hfd"/>
+                                        </constraints>
+                                        <state key="normal" image="magnifyingglass" catalog="system"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="8wd-Xj-AIL" firstAttribute="top" secondItem="kgV-Zk-OeO" secondAttribute="top" constant="5" id="2BS-nO-aKW"/>
+                                    <constraint firstAttribute="height" constant="50" id="4ng-71-AVV"/>
+                                    <constraint firstItem="8wd-Xj-AIL" firstAttribute="leading" secondItem="kgV-Zk-OeO" secondAttribute="leading" constant="15" id="Fh5-R3-txW"/>
+                                    <constraint firstAttribute="bottom" secondItem="8wd-Xj-AIL" secondAttribute="bottom" constant="5" id="WSd-j0-CaF"/>
+                                    <constraint firstItem="879-Wg-tao" firstAttribute="top" secondItem="kgV-Zk-OeO" secondAttribute="top" constant="10" id="Ymg-FW-Ra8"/>
+                                    <constraint firstAttribute="trailing" secondItem="879-Wg-tao" secondAttribute="trailing" constant="10" id="cr1-uS-IHL"/>
+                                    <constraint firstItem="879-Wg-tao" firstAttribute="leading" secondItem="8wd-Xj-AIL" secondAttribute="trailing" id="lK5-NX-6yn"/>
+                                    <constraint firstAttribute="bottom" secondItem="879-Wg-tao" secondAttribute="bottom" constant="10" id="qYi-Dr-GAQ"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H23-rr-pUt">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="H23-rr-pUt" secondAttribute="bottom" id="Xdu-20-BRd"/>
+                            <constraint firstItem="H23-rr-pUt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="azs-le-AMI"/>
+                            <constraint firstItem="H23-rr-pUt" firstAttribute="top" secondItem="kgV-Zk-OeO" secondAttribute="bottom" constant="10" id="bI7-nZ-yRy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H23-rr-pUt" secondAttribute="trailing" id="eq6-rV-MaP"/>
+                            <constraint firstItem="kgV-Zk-OeO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fGr-5l-8Fe"/>
+                            <constraint firstItem="kgV-Zk-OeO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="flo-GU-Efz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kgV-Zk-OeO" secondAttribute="trailing" id="o8q-Aa-4B7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="searchButton" destination="879-Wg-tao" id="sBO-dj-50Y"/>
+                        <outlet property="searchTextField" destination="hQC-Ww-YYV" id="KiS-uo-Zc7"/>
+                        <outlet property="tableView" destination="H23-rr-pUt" id="DXv-jb-dFl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="101.78571428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+    </resources>
 </document>

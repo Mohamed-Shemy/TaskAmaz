@@ -10,7 +10,7 @@ import Foundation
 
 struct PageResponse<Model: Codable>: Codable
 {
-    let results : [Model]?
+    let results : Model?
     let totalItems: Int?
     let totalPages: Int?
     let page: Int?
