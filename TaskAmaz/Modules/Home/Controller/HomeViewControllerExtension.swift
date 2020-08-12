@@ -11,7 +11,10 @@ import UIKit
 // MARK: - UITableViewDelegate -
 extension HomeViewController: UITableViewDelegate
 {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK:- TableViewDataSource -
@@ -22,8 +25,12 @@ extension TableViewDataSource where Model == Person, Cell == PersonTableViewCell
         return TableViewDataSource(models: persons, reuseIdentifier: reuseIdentifier)
         {person, cell, indexPath in
             
+            if let profilePath = person.profilePath
+            {
+                let path = Helper.instance.getImageFullURL(with: profilePath, option: .width(200))
+                cell.profileImageView.setImage(from: path)
+            }
             
-            cell.profileImageView.setImage(from: person.profilePath)
             cell.nameLabel.text = person.name
             cell.popularityLabel.text = "\(person.popularity ?? 0.0)/100.0"
         }

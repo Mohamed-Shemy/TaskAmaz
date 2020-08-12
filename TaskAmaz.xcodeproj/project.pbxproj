@@ -30,6 +30,7 @@
 		D9A1E2AC24E34AE600577345 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2AB24E34AE600577345 /* UIImageView.swift */; };
 		D9A1E2AE24E3513900577345 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2AD24E3513900577345 /* HomeViewModel.swift */; };
 		D9A1E2B124E3643500577345 /* ImageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2B024E3643500577345 /* ImageOptions.swift */; };
+		D9A1E2B424E365F300577345 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2B324E365F300577345 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		D9A1E2AB24E34AE600577345 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		D9A1E2AD24E3513900577345 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D9A1E2B024E3643500577345 /* ImageOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOptions.swift; sourceTree = "<group>"; };
+		D9A1E2B324E365F300577345 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		DC5A5EAE75C330363578ADC0 /* Pods-TaskAmaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskAmaz.debug.xcconfig"; path = "Target Support Files/Pods-TaskAmaz/Pods-TaskAmaz.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,8 +126,6 @@
 		D97BDE3024E2F35E00EA2452 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D9A1E28B24E3101500577345 /* ViewModel */,
-				D9A1E28A24E3100F00577345 /* View */,
 				D97BDE3124E2F36400EA2452 /* Home */,
 			);
 			path = Modules;
@@ -134,6 +134,8 @@
 		D97BDE3124E2F36400EA2452 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D9A1E28B24E3101500577345 /* ViewModel */,
+				D9A1E28A24E3100F00577345 /* View */,
 				D97BDE3424E2F39E00EA2452 /* Controller */,
 			);
 			path = Home;
@@ -170,7 +172,6 @@
 		D97BDE3524E2F3BC00EA2452 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D9A1E2AF24E3642400577345 /* Enums */,
 				D97BDE4124E3020F00EA2452 /* Response */,
 				D97BDE3E24E2FBC700EA2452 /* Models */,
 				D97BDE3D24E2FBBE00EA2452 /* API */,
@@ -225,6 +226,7 @@
 		D9A1E29024E313DB00577345 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D9A1E2AF24E3642400577345 /* Enums */,
 				D9A1E2B224E3656900577345 /* Utitlities */,
 				D9A1E2AA24E34AD400577345 /* Extensions */,
 				D9A1E29C24E3183300577345 /* Reusable Data Source */,
@@ -287,6 +289,7 @@
 		D9A1E2B224E3656900577345 /* Utitlities */ = {
 			isa = PBXGroup;
 			children = (
+				D9A1E2B324E365F300577345 /* Helper.swift */,
 			);
 			path = Utitlities;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				D97BDE2124E2E90100EA2452 /* HomeViewController.swift in Sources */,
 				D9A1E28E24E3104B00577345 /* PersonTableViewCell.swift in Sources */,
 				D97BDE3C24E2F40200EA2452 /* NetworkManager.swift in Sources */,
+				D9A1E2B424E365F300577345 /* Helper.swift in Sources */,
 				D97BDE4324E3022100EA2452 /* Person.swift in Sources */,
 				D9A1E2AC24E34AE600577345 /* UIImageView.swift in Sources */,
 				D97BDE3824E2F3DD00EA2452 /* API.swift in Sources */,

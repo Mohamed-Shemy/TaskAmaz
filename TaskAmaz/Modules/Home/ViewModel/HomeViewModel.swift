@@ -53,9 +53,4 @@ class HomeViewModel: NetworkManagerInjected
             }
         }
     }
-    
-    func getImageFullURL(with path: String, option: ImageOptions) -> String
-    {
-        return "\(URLs.image.rawValue)/\(option.value)\(path)"
-    }
 }

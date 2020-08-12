@@ -12,15 +12,18 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" id="KGk-i7-Jjw" customClass="PersonTableViewCell" customModule="TaskAmaz" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="458" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="458" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krC-qs-9sU" customClass="iView" customModule="TaskAmaz" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="438" height="120"/>
+                        <rect key="frame" x="10" y="10" width="438" height="100"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hPa-nW-Jhi" customClass="iImageView" customModule="TaskAmaz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1.5" width="153.5" height="117"/>
+                                <rect key="frame" x="0.0" y="1.5" width="70" height="97"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="hRD-PI-m9B"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -28,13 +31,13 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alison Jaye Horowitz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="071-jx-pSD">
-                                <rect key="frame" x="158.5" y="10" width="274.5" height="72"/>
+                                <rect key="frame" x="75" y="10" width="358" height="50"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="94.483 / 100.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mt-Ud-uGY">
-                                <rect key="frame" x="158.5" y="87" width="274.5" height="23"/>
+                                <rect key="frame" x="75" y="65" width="358" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -47,13 +50,12 @@
                             <constraint firstItem="8Mt-Ud-uGY" firstAttribute="top" secondItem="071-jx-pSD" secondAttribute="bottom" constant="5" id="KaL-ds-YLk"/>
                             <constraint firstAttribute="trailing" secondItem="8Mt-Ud-uGY" secondAttribute="trailing" constant="5" id="Ket-rE-D6D"/>
                             <constraint firstItem="8Mt-Ud-uGY" firstAttribute="leading" secondItem="hPa-nW-Jhi" secondAttribute="trailing" constant="5" id="Mud-sF-i3K"/>
-                            <constraint firstAttribute="height" constant="120" id="Vzy-GT-ZtH"/>
+                            <constraint firstAttribute="height" constant="100" id="Vzy-GT-ZtH"/>
                             <constraint firstAttribute="trailing" secondItem="071-jx-pSD" secondAttribute="trailing" constant="5" id="dcC-zH-Wag"/>
                             <constraint firstItem="071-jx-pSD" firstAttribute="top" secondItem="krC-qs-9sU" secondAttribute="top" constant="10" id="exA-dP-YRZ"/>
-                            <constraint firstItem="071-jx-pSD" firstAttribute="height" secondItem="krC-qs-9sU" secondAttribute="height" multiplier="0.6" id="gM8-gY-eib"/>
+                            <constraint firstItem="071-jx-pSD" firstAttribute="height" secondItem="krC-qs-9sU" secondAttribute="height" multiplier="0.5" id="gM8-gY-eib"/>
                             <constraint firstItem="hPa-nW-Jhi" firstAttribute="top" secondItem="krC-qs-9sU" secondAttribute="top" id="iGQ-Fd-4Ux"/>
                             <constraint firstAttribute="bottom" secondItem="8Mt-Ud-uGY" secondAttribute="bottom" constant="10" id="jeB-pU-X26"/>
-                            <constraint firstItem="hPa-nW-Jhi" firstAttribute="width" secondItem="krC-qs-9sU" secondAttribute="width" multiplier="0.35" id="lQ8-Aj-qsg"/>
                             <constraint firstItem="hPa-nW-Jhi" firstAttribute="leading" secondItem="krC-qs-9sU" secondAttribute="leading" id="yUf-xn-oza"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
