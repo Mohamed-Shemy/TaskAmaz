@@ -83,4 +83,29 @@ class NetworkManager: Networkable
             }
         }
     }
+    
+    func getPersonImages(with id: Int, completion: @escaping (Result<ProfileResponse, Error>) -> Void)
+    {
+        self.provider.request(.getPersonImages(id: id))
+        { result in
+            
+            switch result
+            {
+                case .success(let value):
+                    let decoder = JSONDecoder()
+                    do
+                    {
+                        let response = try decoder.decode(ProfileResponse.self, from: value.data)
+                        completion(.success(response))
+                    }
+                    catch let error
+                    {
+                        completion(.failure(error))
+                }
+                
+                case .failure(let error):
+                    completion(.failure(error))
+            }
+        }
+    }
 }

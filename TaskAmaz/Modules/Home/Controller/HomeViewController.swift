@@ -20,6 +20,7 @@ class HomeViewController: UIViewController
     
     private let cellIdentifier: String = "PersonCell"
     private let cellNibName: String = "PersonTableViewCell"
+    let personDetailsVCIdentifier: String = "PersonDetailsViewController"
     
     var spinner = UIActivityIndicatorView()
     var moreButton: iButton!
@@ -27,7 +28,9 @@ class HomeViewController: UIViewController
     var viewModel: HomeViewModel!
     var currentPage: Int = 1
     var totalPages: Int = 1
-    
+    var isSearchActive: Bool = false
+    var searchKey: String = ""
+        
     var dataSource: TableViewDataSource<Person, PersonTableViewCell>!
     {
         didSet
@@ -80,7 +83,7 @@ class HomeViewController: UIViewController
     {
         let width = self.view.bounds.width - 50
         let customView = UIView(frame: CGRect(x: 25, y: 0, width: width, height: 100))
-        self.moreButton = iButton(frame: CGRect(x: 0, y: 20, width: width, height: 50))
+        self.moreButton = iButton(frame: CGRect(x: 0, y: 25, width: width, height: 50))
         self.moreButton.setTitle("More", for: .normal)
         self.moreButton.backgroundColor = .systemBlue
         self.moreButton.addTarget(self, action: #selector(loadMoreAction), for: .touchUpInside)
@@ -88,10 +91,9 @@ class HomeViewController: UIViewController
         self.moreButton.shadowRadius = 5.0
         self.moreButton.shadowOffsetWidth = 1.0
         self.moreButton.shadowOffsetHeight = 2.0
-        self.moreButton.shadowOpacity = 0.5
-        customView.addSubview(self.moreButton)
+        self.moreButton.shadowOpacity = 0.8
         
-        self.setupActivityIndicator()
+        customView.addSubview(self.moreButton)
         self.tableView.tableFooterView = customView
     }
     
@@ -99,9 +101,9 @@ class HomeViewController: UIViewController
     {
         self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
         self.spinner.stopAnimating()
-        self.spinner.color = .black
+        self.spinner.color = .white
         self.spinner.hidesWhenStopped = true
-        self.spinner.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 50)
+        self.spinner.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50, height: 50)
         self.moreButton.addSubview(self.spinner)
     }
     
@@ -116,6 +118,26 @@ class HomeViewController: UIViewController
     {
         self.currentPage = min((self.currentPage + 1), self.totalPages)
         self.getPopularPersons()
+    }
+    
+    func loadMoreSearchResults()
+    {
+        self.currentPage = min((self.currentPage + 1), self.totalPages)
+        self.searchForPerson(with: self.searchKey)
+    }
+    
+    func clearData()
+    {
+        self.currentPage = 1
+        self.totalPages = 1
+        self.persons.removeAll()
+    }
+    
+    func prepareNavigationToDetails(at index: Int)
+    {
+        let personDetailsVC = self.storyboard!.instantiateViewController(withIdentifier: self.personDetailsVCIdentifier) as! PersonDetailsViewController
+        personDetailsVC.person = self.persons[index]
+        self.present(personDetailsVC, animated: true, completion: nil)
     }
     
     //MARK:- Data Binding Methods
@@ -139,13 +161,39 @@ class HomeViewController: UIViewController
         }
     }
     
+    func searchForPerson(with name: String)
+    {        
+        self.viewModel.searchForPerson(with: name, in: self.currentPage)
+        {(persons, page, totalPages) in
+            if let persons = persons
+            {
+                self.persons.append(contentsOf: persons)
+                self.currentPage = page
+                self.totalPages = totalPages
+            }
+            else
+            {
+                
+            }
+            
+            self.stopLoading()
+        }
+    }
+    
     //MARK:- Actions
     
     @objc func loadMoreAction(_ sender: UIButton)
     {
         self.startLoading()
         
-        self.loadMorePersons()
+        if self.isSearchActive
+        {
+            self.loadMoreSearchResults()
+        }
+        else
+        {
+            self.loadMorePersons()
+        }
     }
 }
 
@@ -154,15 +202,15 @@ extension HomeViewController
 {
     func startLoading()
     {
+        self.spinner.startAnimating()
         self.moreButton.setTitle("", for: .normal)
         self.moreButton.isUserInteractionEnabled = false
-        self.spinner.startAnimating()
     }
     
     func stopLoading()
     {
-        self.spinner.stopAnimating()
         self.moreButton.setTitle("More", for: .normal)
         self.moreButton.isUserInteractionEnabled = true
+        self.spinner.stopAnimating()
     }
 }

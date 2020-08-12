@@ -14,6 +14,7 @@ extension HomeViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.prepareNavigationToDetails(at: indexPath.row)
     }
 }
 
@@ -32,7 +33,7 @@ extension TableViewDataSource where Model == Person, Cell == PersonTableViewCell
             }
             
             cell.nameLabel.text = person.name
-            cell.popularityLabel.text = "\(person.popularity ?? 0.0)/100.0"
+            cell.popularityLabel.text = "\(person.popularity ?? 0.0)"
         }
     }
 }

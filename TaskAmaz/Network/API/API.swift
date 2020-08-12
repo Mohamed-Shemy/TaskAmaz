@@ -18,6 +18,7 @@ enum API
 {
     case getPopularPersons(page: Int)
     case searchForPerson(name: String, page: Int)
+    case getPersonImages(id: Int)
 }
 
 extension API: TargetType
@@ -43,6 +44,9 @@ extension API: TargetType
             
             case .searchForPerson:
                 return "search/person"
+            
+            case let .getPersonImages(id):
+                return "person/\(id)/images"
         }
     }
     
@@ -74,6 +78,10 @@ extension API: TargetType
                 var parameters: [String: Any] = ["api_key": API_KEY]
                 parameters["query"] = name
                 parameters["page"] = page
+                return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            
+            default:
+                let parameters: [String: Any] = ["api_key": API_KEY]
                 return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }

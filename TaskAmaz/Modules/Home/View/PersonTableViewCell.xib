@@ -36,26 +36,35 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="94.483 / 100.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mt-Ud-uGY">
-                                <rect key="frame" x="75" y="65" width="358" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="94.483" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mt-Ud-uGY">
+                                <rect key="frame" x="241" y="65" width="56" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qjF-m5-eKL">
+                                <rect key="frame" x="199" y="61.5" width="32" height="32"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Z2R-tg-idY"/>
+                                    <constraint firstAttribute="height" constant="32" id="mja-H6-GFz"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="071-jx-pSD" firstAttribute="leading" secondItem="hPa-nW-Jhi" secondAttribute="trailing" constant="5" id="1x9-uT-xm0"/>
                             <constraint firstAttribute="bottom" secondItem="hPa-nW-Jhi" secondAttribute="bottom" id="IQB-cz-bx0"/>
                             <constraint firstItem="8Mt-Ud-uGY" firstAttribute="top" secondItem="071-jx-pSD" secondAttribute="bottom" constant="5" id="KaL-ds-YLk"/>
-                            <constraint firstAttribute="trailing" secondItem="8Mt-Ud-uGY" secondAttribute="trailing" constant="5" id="Ket-rE-D6D"/>
-                            <constraint firstItem="8Mt-Ud-uGY" firstAttribute="leading" secondItem="hPa-nW-Jhi" secondAttribute="trailing" constant="5" id="Mud-sF-i3K"/>
                             <constraint firstAttribute="height" constant="100" id="Vzy-GT-ZtH"/>
+                            <constraint firstItem="8Mt-Ud-uGY" firstAttribute="leading" secondItem="qjF-m5-eKL" secondAttribute="trailing" constant="10" id="bpu-BX-78q"/>
                             <constraint firstAttribute="trailing" secondItem="071-jx-pSD" secondAttribute="trailing" constant="5" id="dcC-zH-Wag"/>
+                            <constraint firstItem="qjF-m5-eKL" firstAttribute="centerY" secondItem="8Mt-Ud-uGY" secondAttribute="centerY" id="deU-vg-twE"/>
                             <constraint firstItem="071-jx-pSD" firstAttribute="top" secondItem="krC-qs-9sU" secondAttribute="top" constant="10" id="exA-dP-YRZ"/>
                             <constraint firstItem="071-jx-pSD" firstAttribute="height" secondItem="krC-qs-9sU" secondAttribute="height" multiplier="0.5" id="gM8-gY-eib"/>
                             <constraint firstItem="hPa-nW-Jhi" firstAttribute="top" secondItem="krC-qs-9sU" secondAttribute="top" id="iGQ-Fd-4Ux"/>
                             <constraint firstAttribute="bottom" secondItem="8Mt-Ud-uGY" secondAttribute="bottom" constant="10" id="jeB-pU-X26"/>
+                            <constraint firstItem="8Mt-Ud-uGY" firstAttribute="centerX" secondItem="krC-qs-9sU" secondAttribute="centerX" constant="50" id="jfP-JV-XmD"/>
                             <constraint firstItem="hPa-nW-Jhi" firstAttribute="leading" secondItem="krC-qs-9sU" secondAttribute="leading" id="yUf-xn-oza"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -97,5 +106,6 @@
     </objects>
     <resources>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>
