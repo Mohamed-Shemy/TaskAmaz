@@ -28,7 +28,7 @@ class OriginalImageViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.setupViews()        
+        self.setupViews()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle
@@ -41,6 +41,7 @@ class OriginalImageViewController: UIViewController
     private func setupViews()
     {
         self.setupImageView()
+        self.setupViewModel()
         self.setupDisplayMessageObserver()
         
         self.getOriginalImage()
