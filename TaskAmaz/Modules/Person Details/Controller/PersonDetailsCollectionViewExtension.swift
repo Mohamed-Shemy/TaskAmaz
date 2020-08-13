@@ -12,14 +12,14 @@ extension PersonDetailsViewController: UICollectionViewDelegate, UICollectionVie
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        self.profiles.count
+        self.viewModel.numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.imageCellIdentifier, for: indexPath) as! PersonImageCollectionViewCell
         
-        let filePath = self.profiles[indexPath.row].filePath ?? ""
+        let filePath = self.viewModel.profile(at: indexPath.row).filePath ?? ""
         let path = Helper.instance.getImageFullURL(with: filePath, option: .width(200))
         cell.configure(with: path)
         

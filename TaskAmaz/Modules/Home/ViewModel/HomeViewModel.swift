@@ -10,31 +10,52 @@ import Foundation
 
 class HomeViewModel: NetworkManagerInjected
 {
-    func getPopularPersons(in page: Int, completion: @escaping ([Person]?, Int, Int) -> Void)
+    //MARK: - Private Properties
+    
+    private var currentPage: Int = 1
+    private var totalPages: Int = 1
+    private var searchKey: String = ""
+    
+    //MARK: - Observer Properties
+    
+    private var persons: [Person] = []
     {
-        self.networkManager.getPopularPersons(in: page)
-        { (response) in
-            
-            switch response
-            {
-                case let .success(personsPresponse):
-                    if let persons = personsPresponse.results, let page = personsPresponse.page, let totalPages = personsPresponse.totalPages
-                    {
-                        completion(persons, page, totalPages)
-                    }
-                    else
-                    {
-                        completion(nil, 0, 0)
-                    }
-                case .failure(_):
-                    completion(nil, 0, 0)
-            }
+        didSet
+        {
+            self.dataSource = .make(for: self.persons)
         }
     }
     
-    func searchForPerson(with name: String, in page: Int, completion: @escaping ([Person]?, Int, Int) -> Void)
+    var errorMessage: String?
     {
-        self.networkManager.searchForPerson(with: name, in: page)
+        didSet
+        {
+            self.displayErrorClosure?()
+        }
+    }
+    
+    var dataSource: TableViewDataSource<Person, PersonTableViewCell> = .make(for: [])
+    {
+        didSet
+        {
+            self.reloadTableViewClosure?()
+        }
+    }
+    
+    // MARK: - Closures
+    
+    var reloadTableViewClosure: (()->())?
+    var startLoadingClosure: (()->())?
+    var stopLoadingClosure: (()->())?
+    var displayErrorClosure: (()->())?
+    
+    // MARK: - API Call
+    
+    func getPopularPersons()
+    {
+        self.startLoadingClosure?()
+        
+        self.networkManager.getPopularPersons(in: self.currentPage)
         { (response) in
             
             switch response
@@ -42,15 +63,80 @@ class HomeViewModel: NetworkManagerInjected
                 case let .success(personsPresponse):
                     if let persons = personsPresponse.results, let page = personsPresponse.page, let totalPages = personsPresponse.totalPages
                     {
-                        completion(persons, page, totalPages)
+                        self.setData(persons, page, totalPages)
                     }
                     else
                     {
-                        completion(nil, 0, 0)
-                }
+                        self.errorMessage = "Cannot load more persons!"
+                    }
                 case .failure(_):
-                    completion(nil, 0, 0)
+                    self.errorMessage = "Cannot load more persons!"
             }
+            
+            self.stopLoadingClosure?()
         }
+    }
+    
+    func searchForPerson(with name: String)
+    {
+        self.startLoadingClosure?()
+        self.searchKey = name
+        
+        self.networkManager.searchForPerson(with: name, in: self.currentPage)
+        { (response) in
+            
+            switch response
+            {
+                case let .success(personsPresponse):
+                    if let persons = personsPresponse.results, let page = personsPresponse.page, let totalPages = personsPresponse.totalPages
+                    {
+                        self.setData(persons, page, totalPages)
+                    }
+                    else
+                    {
+                        self.errorMessage = "Cannot load more results!"
+                    }
+                case .failure(_):
+                    self.errorMessage = "Cannot load more results!"
+            }
+            
+            self.stopLoadingClosure?()
+        }
+    }
+    
+    // MARK:- Public Methods
+    
+    func loadMorePersons()
+    {
+        self.currentPage = min((self.currentPage + 1), self.totalPages)
+        self.getPopularPersons()
+    }
+    
+    func loadMoreSearchResults()
+    {
+        self.currentPage = min((self.currentPage + 1), self.totalPages)
+        self.searchForPerson(with: self.searchKey)
+    }
+    
+    func clearData()
+    {
+        self.currentPage = 1
+        self.totalPages = 1
+        self.searchKey = ""
+        self.persons.removeAll()
+    }
+    
+    func person(at index: Int) -> Person
+    {
+        return self.persons[index]
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setData(_ persons: [Person], _ currentPage: Int, _ totalPages: Int)
+    {
+        self.currentPage = currentPage
+        self.totalPages = totalPages
+        self.persons.append(contentsOf: persons)
     }
 }

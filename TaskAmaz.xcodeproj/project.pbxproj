@@ -40,6 +40,7 @@
 		D9A1E2C824E4168700577345 /* PersonImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2C724E4168700577345 /* PersonImageCollectionViewCell.swift */; };
 		D9A1E2CC24E4224D00577345 /* OriginalImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */; };
 		D9A1E2D124E4C9F400577345 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2D024E4C9F400577345 /* UIViewController.swift */; };
+		D9A1E2D324E57B9E00577345 /* HomeDataBindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2D224E57B9E00577345 /* HomeDataBindingExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		D9A1E2C724E4168700577345 /* PersonImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalImageViewController.swift; sourceTree = "<group>"; };
 		D9A1E2D024E4C9F400577345 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		D9A1E2D224E57B9E00577345 /* HomeDataBindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataBindingExtension.swift; sourceTree = "<group>"; };
 		DC5A5EAE75C330363578ADC0 /* Pods-TaskAmaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskAmaz.debug.xcconfig"; path = "Target Support Files/Pods-TaskAmaz/Pods-TaskAmaz.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 			children = (
 				D97BDE2024E2E90100EA2452 /* HomeViewController.swift */,
 				D9A1E2A824E3361800577345 /* HomeViewControllerExtension.swift */,
+				D9A1E2D224E57B9E00577345 /* HomeDataBindingExtension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				D9A1E2CC24E4224D00577345 /* OriginalImageViewController.swift in Sources */,
 				D97BDE3A24E2F3ED00EA2452 /* NetworkProtocol.swift in Sources */,
 				D97BDE4024E2FF6000EA2452 /* PageResponse.swift in Sources */,
+				D9A1E2D324E57B9E00577345 /* HomeDataBindingExtension.swift in Sources */,
 				D9A1E29B24E3143200577345 /* iImageView.swift in Sources */,
 				D97BDE2124E2E90100EA2452 /* HomeViewController.swift in Sources */,
 				D9A1E28E24E3104B00577345 /* PersonTableViewCell.swift in Sources */,

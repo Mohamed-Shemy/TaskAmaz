@@ -10,7 +10,37 @@ import Foundation
 
 class PersonDetailsViewModel: NetworkManagerInjected
 {
-    func getProfile(with id: Int, completion: @escaping ([Profile]?) -> Void)
+    //MARK: - Observer Properties
+    
+    var profiles: [Profile] = []
+    {
+        didSet
+        {
+            self.reloadCollectionViewClosure?()
+        }
+    }
+    
+    var errorMessage: String?
+    {
+        didSet
+        {
+            self.displayErrorClosure?()
+        }
+    }
+    
+    var numberOfItems: Int
+    {
+        return self.profiles.count
+    }
+    
+    // MARK: - Closures
+    
+    var reloadCollectionViewClosure: (()->())?
+    var displayErrorClosure: (()->())?
+    
+     // MARK: - API Call
+    
+    func getProfile(with id: Int)
     {
         self.networkManager.getPersonImages(with: id)
         { (response) in
@@ -20,15 +50,22 @@ class PersonDetailsViewModel: NetworkManagerInjected
                 case let .success(profilePresponse):
                     if let profiles = profilePresponse.profiles
                     {
-                        completion(profiles)
+                        self.profiles = profiles
                     }
                     else
                     {
-                        completion(nil)
+                        self.errorMessage = "Cannot load profile!"
                     }
                 case .failure(_):
-                    completion(nil)
+                    self.errorMessage = "Cannot load profile!"
             }
         }
+    }
+    
+    // MARK:- Public Methods
+    
+    func profile(at index: Int) -> Profile
+    {
+        return self.profiles[index]
     }
 }

@@ -133,7 +133,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-9f-ClM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="160"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="3fb-am-5nJ"/>
                                 </constraints>
@@ -163,7 +163,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="128" id="EXb-3P-wAs"/>
                                                         <constraint firstItem="GD4-fj-mc5" firstAttribute="leading" secondItem="3bJ-uM-uvX" secondAttribute="leading" id="Eo6-i4-Aof"/>
@@ -191,6 +191,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="3bJ-uM-uvX" firstAttribute="leading" secondItem="IR1-xl-1Kf" secondAttribute="leading" constant="10" id="FBk-2B-KPY"/>
                                                 <constraint firstAttribute="bottom" secondItem="3bJ-uM-uvX" secondAttribute="bottom" constant="10" id="UTh-Pz-q1B"/>
@@ -198,6 +199,7 @@
                                                 <constraint firstItem="3bJ-uM-uvX" firstAttribute="top" secondItem="IR1-xl-1Kf" secondAttribute="top" constant="10" id="bzc-jA-KOg"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="profileImageView" destination="GD4-fj-mc5" id="F3Z-5k-hta"/>
                                         </connections>
@@ -206,7 +208,7 @@
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yYw-G3-0ZS">
                                 <rect key="frame" x="0.0" y="214" width="414" height="648"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PersonDataCell" textLabel="FxH-sa-aS6" detailTextLabel="SLc-5S-tmV" style="IBUITableViewCellStyleSubtitle" id="yIs-HT-x4P">
                                         <rect key="frame" x="0.0" y="28" width="414" height="56"/>
@@ -219,14 +221,14 @@
                                                     <rect key="frame" x="20" y="9" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SLc-5S-tmV">
                                                     <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -292,7 +294,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PJp-sn-tov" firstAttribute="leading" secondItem="Xbe-es-207" secondAttribute="leading" id="53E-ba-Jg4"/>
                             <constraint firstItem="Xbe-es-207" firstAttribute="trailing" secondItem="gNI-Tn-IfS" secondAttribute="trailing" id="7PM-4D-H9j"/>

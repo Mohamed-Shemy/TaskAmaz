@@ -26,22 +26,17 @@ class PersonDetailsViewController: UIViewController
     
     var person: Person!
     
-    var profiles: [Profile] = []
-    {
-        didSet
-        {
-            self.imagesCollectionView.reloadData()
-        }
-    }
-    
     //MARK:- ViewController Life Cycle
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.setupViews()
-        
-        self.getImages()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return .lightContent
     }
     
     //MARK:- Setup
@@ -51,6 +46,9 @@ class PersonDetailsViewController: UIViewController
         self.setupTableView()
         self.setupCollectionView()
         self.setupViewModel()
+        self.setupObservers()
+        
+        self.getImages()
     }
     
     private func setupTableView()
@@ -73,35 +71,54 @@ class PersonDetailsViewController: UIViewController
     
     //MARK:- Methods
     
+    func getImages()
+    {
+        if let id = self.person.id
+        {
+            self.viewModel.getProfile(with: id)
+        }
+        else
+        {
+            self.showAlert(title: "Error", message: "Cannot load profile")
+        }
+    }
+    
     func prepareNavigationToDetails(at index: Int)
     {
         let originalImageVC = self.storyboard!.instantiateViewController(withIdentifier: self.originalImageVCIdentifier) as! OriginalImageViewController
         
         let cell = imagesCollectionView.cellForItem(at: IndexPath(row: index, section: 0)) as! PersonImageCollectionViewCell
         originalImageVC.profileImage = cell.profileImageView.image
-        originalImageVC.profileImagePath = self.profiles[index].filePath
+        originalImageVC.profileImagePath = self.viewModel.profile(at: index).filePath
         
         self.present(originalImageVC, animated: true, completion: nil)
     }
     
     //MARK:- Data Binding Methods
     
-    func getImages()
+    func setupObservers()
     {
-        guard let id = person.id else { return }
-        self.viewModel.getProfile(with: id)
-        { profiles in
-            
-            if let profiles = profiles
-            {
-                self.profiles = profiles
-            }
-            else
-            {
-                self.showAlert(title: "Profiles", message: "Cannot load profiles!")
-            }
+        self.reloadCollectionViewObserver()
+        self.displayErrorObserver()
+    }
+    
+    func reloadCollectionViewObserver()
+    {
+        self.viewModel.reloadCollectionViewClosure =
+            { [weak self] () in
+                DispatchQueue.main.async
+                    {
+                        self?.imagesCollectionView.reloadData()
+                }
         }
     }
     
-    //MARK:- Actions
+    func displayErrorObserver()
+    {
+        self.viewModel.displayErrorClosure =
+            { [weak self] () in
+                let errorMessage = self?.viewModel.errorMessage ?? "Unkown error"
+                self?.showAlert(title: "Error", message: errorMessage)
+        }
+    }
 }

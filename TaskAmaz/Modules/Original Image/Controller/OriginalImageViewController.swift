@@ -31,6 +31,11 @@ class OriginalImageViewController: UIViewController
         self.getOriginalImage()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return .lightContent
+    }
+    
     //MARK:- Setup
     
     private func setupViews()

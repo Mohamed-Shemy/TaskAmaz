@@ -25,27 +25,9 @@ class HomeViewController: UIViewController
     var spinner = UIActivityIndicatorView()
     
     var viewModel: HomeViewModel!
-    var currentPage: Int = 1
-    var totalPages: Int = 1
     var isSearchActive: Bool = false
     var searchKey: String = ""
-        
-    var dataSource: TableViewDataSource<Person, PersonTableViewCell>!
-    {
-        didSet
-        {
-            self.tableView.dataSource = self.dataSource
-            self.tableView.reloadData()
-        }
-    }
-    
-    var persons: [Person] = []
-    {
-        didSet
-        {
-            self.dataSource = .make(for: self.persons)
-        }
-    }
+  
     
     //MARK:- ViewController Life Cycle
     
@@ -53,23 +35,24 @@ class HomeViewController: UIViewController
     {
         super.viewDidLoad()
         self.setupViews()
-        self.getPopularPersons()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return .lightContent
+    }
+    
     //MARK:- Setup
     
     private func setupViews()
     {
-        self.setupTableViewDataSource()
         self.setupTableView()
         self.setupViewModel()
         self.setupActivityIndicator()
         self.setupSearchTextField()
-    }
-    
-    private func setupTableViewDataSource()
-    {
-        self.dataSource = .make(for: self.persons)
+        self.setupObservers()
+        
+         self.viewModel.getPopularPersons()
     }
     
     private func setupTableView()
@@ -103,27 +86,18 @@ class HomeViewController: UIViewController
     
     func loadMorePersons()
     {
-        self.currentPage = min((self.currentPage + 1), self.totalPages)
-        self.getPopularPersons()
+        self.viewModel.loadMorePersons()
     }
     
     func loadMoreSearchResults()
     {
-        self.currentPage = min((self.currentPage + 1), self.totalPages)
-        self.searchForPerson(with: self.searchKey)
-    }
-    
-    func clearData()
-    {
-        self.currentPage = 1
-        self.totalPages = 1
-        self.persons.removeAll()
+        self.viewModel.loadMoreSearchResults()
     }
     
     func prepareNavigationToDetails(at index: Int)
     {
         let personDetailsVC = self.storyboard!.instantiateViewController(withIdentifier: self.personDetailsVCIdentifier) as! PersonDetailsViewController
-        personDetailsVC.person = self.persons[index]
+        personDetailsVC.person = self.viewModel.person(at: index)
         self.present(personDetailsVC, animated: true, completion: nil)
     }
     
@@ -131,9 +105,9 @@ class HomeViewController: UIViewController
     {
         if let key = self.searchTextField.text, !key.isEmpty
         {
-            self.clearData()
+            self.viewModel.clearData()
             self.activateSearch()
-            self.searchForPerson(with: key)
+            self.viewModel.searchForPerson(with: key)
         }
         else
         {
@@ -158,53 +132,11 @@ class HomeViewController: UIViewController
         self.searchButton.tintColor = .systemBlue
         self.searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
     }
-    
-    //MARK:- Data Binding Methods
-    
-    func getPopularPersons()
-    {
-        self.viewModel.getPopularPersons(in: self.currentPage)
-        {(persons, page, totalPages) in
-            if let persons = persons
-            {
-                self.persons.append(contentsOf: persons)
-                self.currentPage = page
-                self.totalPages = totalPages
-            }
-            else
-            {
-                self.showAlert(title: "Popular Persons", message: "Cannot load more persons!")
-            }
-            
-            self.stopLoading()
-        }
-    }
-    
-    func searchForPerson(with name: String)
-    {        
-        self.viewModel.searchForPerson(with: name, in: self.currentPage)
-        {(persons, page, totalPages) in
-            if let persons = persons
-            {
-                self.persons.append(contentsOf: persons)
-                self.currentPage = page
-                self.totalPages = totalPages
-            }
-            else
-            {
-                self.showAlert(title: "Search Result", message: "Cannot load more results!")
-            }
-            
-            self.stopLoading()
-        }
-    }
-    
+   
     //MARK:- Actions
     
     func loadMore()
     {
-        self.startLoading()
-        
         if self.isSearchActive
         {
             self.loadMoreSearchResults()
@@ -220,8 +152,8 @@ class HomeViewController: UIViewController
         if self.isSearchActive
         {
             self.deactivateSearch()
-            self.clearData()
-            self.getPopularPersons()
+            self.viewModel.clearData()
+            self.viewModel.getPopularPersons()
         }
         else
         {
