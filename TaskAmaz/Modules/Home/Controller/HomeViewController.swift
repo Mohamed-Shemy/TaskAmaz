@@ -23,7 +23,6 @@ class HomeViewController: UIViewController
     let personDetailsVCIdentifier: String = "PersonDetailsViewController"
     
     var spinner = UIActivityIndicatorView()
-    var moreButton: iButton!
     
     var viewModel: HomeViewModel!
     var currentPage: Int = 1
@@ -64,8 +63,8 @@ class HomeViewController: UIViewController
         self.setupTableViewDataSource()
         self.setupTableView()
         self.setupViewModel()
-        self.setupTableViewFooter()
         self.setupActivityIndicator()
+        self.setupSearchTextField()
     }
     
     private func setupTableViewDataSource()
@@ -79,32 +78,20 @@ class HomeViewController: UIViewController
         self.tableView.delegate = self
     }
     
-    private func setupTableViewFooter()
+    private func setupSearchTextField()
     {
-        let width = self.view.bounds.width - 50
-        let customView = UIView(frame: CGRect(x: 25, y: 0, width: width, height: 100))
-        self.moreButton = iButton(frame: CGRect(x: 0, y: 25, width: width, height: 50))
-        self.moreButton.setTitle("More", for: .normal)
-        self.moreButton.backgroundColor = .systemBlue
-        self.moreButton.addTarget(self, action: #selector(loadMoreAction), for: .touchUpInside)
-        self.moreButton.cornerRadius = 25.0
-        self.moreButton.shadowRadius = 5.0
-        self.moreButton.shadowOffsetWidth = 1.0
-        self.moreButton.shadowOffsetHeight = 2.0
-        self.moreButton.shadowOpacity = 0.8
-        
-        customView.addSubview(self.moreButton)
-        self.tableView.tableFooterView = customView
+        self.searchTextField.delegate = self
+        self.searchTextField.returnKeyType = .search
     }
     
     private func setupActivityIndicator()
     {
-        self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         self.spinner.stopAnimating()
-        self.spinner.color = .white
         self.spinner.hidesWhenStopped = true
-        self.spinner.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50, height: 50)
-        self.moreButton.addSubview(self.spinner)
+        self.spinner.color = .systemBlue
+        self.spinner.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 60)
+        self.tableView.tableFooterView = spinner
     }
     
     private func setupViewModel()
@@ -140,6 +127,38 @@ class HomeViewController: UIViewController
         self.present(personDetailsVC, animated: true, completion: nil)
     }
     
+    func prepareSearchAction()
+    {
+        if let key = self.searchTextField.text, !key.isEmpty
+        {
+            self.clearData()
+            self.activateSearch()
+            self.searchForPerson(with: key)
+        }
+        else
+        {
+            self.showAlert(title: "Search", message: "Please, enter person name!")
+        }
+    }
+    
+    func activateSearch()
+    {
+        self.isSearchActive = true
+        self.view.endEditing(true)
+        
+        self.searchButton.tintColor = .systemRed
+        self.searchButton.setImage(UIImage(systemName: "multiply"), for: .normal)
+    }
+    
+    func deactivateSearch()
+    {
+        self.isSearchActive = false
+        self.searchTextField.text = ""
+        
+        self.searchButton.tintColor = .systemBlue
+        self.searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+    }
+    
     //MARK:- Data Binding Methods
     
     func getPopularPersons()
@@ -154,7 +173,7 @@ class HomeViewController: UIViewController
             }
             else
             {
-                
+                self.showAlert(title: "Popular Persons", message: "Cannot load more persons!")
             }
             
             self.stopLoading()
@@ -173,7 +192,7 @@ class HomeViewController: UIViewController
             }
             else
             {
-                
+                self.showAlert(title: "Search Result", message: "Cannot load more results!")
             }
             
             self.stopLoading()
@@ -182,7 +201,7 @@ class HomeViewController: UIViewController
     
     //MARK:- Actions
     
-    @objc func loadMoreAction(_ sender: UIButton)
+    func loadMore()
     {
         self.startLoading()
         
@@ -195,6 +214,20 @@ class HomeViewController: UIViewController
             self.loadMorePersons()
         }
     }
+    
+    @IBAction func searchButtonTapped(_ sender: UIButton)
+    {
+        if self.isSearchActive
+        {
+            self.deactivateSearch()
+            self.clearData()
+            self.getPopularPersons()
+        }
+        else
+        {
+            self.prepareSearchAction()
+        }
+    }
 }
 
 // MARK:- ActivityIndicator -
@@ -203,14 +236,10 @@ extension HomeViewController
     func startLoading()
     {
         self.spinner.startAnimating()
-        self.moreButton.setTitle("", for: .normal)
-        self.moreButton.isUserInteractionEnabled = false
     }
     
     func stopLoading()
     {
-        self.moreButton.setTitle("More", for: .normal)
-        self.moreButton.isUserInteractionEnabled = true
         self.spinner.stopAnimating()
     }
 }

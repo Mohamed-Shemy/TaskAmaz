@@ -39,6 +39,7 @@
 		D9A1E2C524E4162700577345 /* PersonDetailsCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2C424E4162700577345 /* PersonDetailsCollectionViewExtension.swift */; };
 		D9A1E2C824E4168700577345 /* PersonImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2C724E4168700577345 /* PersonImageCollectionViewCell.swift */; };
 		D9A1E2CC24E4224D00577345 /* OriginalImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */; };
+		D9A1E2D124E4C9F400577345 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2D024E4C9F400577345 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		D9A1E2C424E4162700577345 /* PersonDetailsCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsCollectionViewExtension.swift; sourceTree = "<group>"; };
 		D9A1E2C724E4168700577345 /* PersonImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalImageViewController.swift; sourceTree = "<group>"; };
+		D9A1E2D024E4C9F400577345 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		DC5A5EAE75C330363578ADC0 /* Pods-TaskAmaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskAmaz.debug.xcconfig"; path = "Target Support Files/Pods-TaskAmaz/Pods-TaskAmaz.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				D9A1E2AB24E34AE600577345 /* UIImageView.swift */,
+				D9A1E2D024E4C9F400577345 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				D97BDE3C24E2F40200EA2452 /* NetworkManager.swift in Sources */,
 				D9A1E2C824E4168700577345 /* PersonImageCollectionViewCell.swift in Sources */,
 				D9A1E2B824E3EEB500577345 /* ProfileResponse.swift in Sources */,
+				D9A1E2D124E4C9F400577345 /* UIViewController.swift in Sources */,
 				D9A1E2B424E365F300577345 /* Helper.swift in Sources */,
 				D9A1E2BA24E3EF5D00577345 /* Profile.swift in Sources */,
 				D97BDE4324E3022100EA2452 /* Person.swift in Sources */,

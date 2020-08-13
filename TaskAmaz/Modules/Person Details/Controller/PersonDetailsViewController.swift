@@ -96,6 +96,10 @@ class PersonDetailsViewController: UIViewController
             {
                 self.profiles = profiles
             }
+            else
+            {
+                self.showAlert(title: "Profiles", message: "Cannot load profiles!")
+            }
         }
     }
     

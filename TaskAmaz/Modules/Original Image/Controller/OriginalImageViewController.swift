@@ -69,31 +69,36 @@ class OriginalImageViewController: UIViewController
         self.toolBarView.isHidden = true
     }
     
-    func saveImage()
+    func saveImage(imageName: String, image: UIImage) -> (Bool, String?)
     {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            else { return (false, "Cannot locate directory!") }
         
-        let fileName = self.profileImagePath ?? "image"
+        let fileName = imageName
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        guard let data = self.profileImageView.image?.jpegData(compressionQuality: 1) else { return }
+        guard let data = image.jpegData(compressionQuality: 1)
+            else { return (false, "Incorrect data format!") }
         
-        //Checks if file exists, removes it if so.
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
+        if FileManager.default.fileExists(atPath: fileURL.path)
+        {
+            do
+            {
                 try FileManager.default.removeItem(atPath: fileURL.path)
-                print("Removed old image")
-            } catch let removeError {
-                print("couldn't remove file at path", removeError)
             }
-            
+            catch let removeError
+            {
+                return (false, removeError.localizedDescription)
+            }
         }
-        
-        do {
+        do
+        {
             try data.write(to: fileURL)
-        } catch let error {
-            print("error saving file with error", error)
+            return (true, nil)
         }
-
+        catch let error
+        {
+            return (false, error.localizedDescription)
+        }
     }
     
     //MARK:- Actions
@@ -106,6 +111,18 @@ class OriginalImageViewController: UIViewController
     
     @IBAction func saveAction(_ sender: UIButton)
     {
-        
+        if let image = self.profileImageView.image, let filePath = self.profileImagePath
+        {
+            let fileName = String(filePath.suffix(filePath.count - 1))
+            let (isSaved, msg) = self.saveImage(imageName: fileName, image: image)
+            if isSaved
+            {
+                self.showAlert(title: "Save", message: "Image has been saved")
+            }
+            else
+            {
+                self.showAlert(title: "Error", message: msg ?? "Cannot save this image!")
+            }
+        }
     }
 }

@@ -16,6 +16,35 @@ extension HomeViewController: UITableViewDelegate
         tableView.deselectRow(at: indexPath, animated: true)
         self.prepareNavigationToDetails(at: indexPath.row)
     }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    {
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size = scrollView.contentSize
+        let inset = scrollView.contentInset
+        
+        let y = offset.y + bounds.size.height - inset.bottom
+        let h = size.height
+        
+        if y > h
+        {
+            self.loadMore()
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate -
+extension HomeViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        
+        self.prepareSearchAction()
+        
+        return true
+    }
 }
 
 // MARK:- TableViewDataSource -
