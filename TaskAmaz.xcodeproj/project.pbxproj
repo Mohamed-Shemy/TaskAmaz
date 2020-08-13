@@ -41,6 +41,7 @@
 		D9A1E2CC24E4224D00577345 /* OriginalImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */; };
 		D9A1E2D124E4C9F400577345 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2D024E4C9F400577345 /* UIViewController.swift */; };
 		D9A1E2D324E57B9E00577345 /* HomeDataBindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2D224E57B9E00577345 /* HomeDataBindingExtension.swift */; };
+		D9A1E2D624E58B2A00577345 /* OriginalImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A1E2D524E58B2A00577345 /* OriginalImageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalImageViewController.swift; sourceTree = "<group>"; };
 		D9A1E2D024E4C9F400577345 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		D9A1E2D224E57B9E00577345 /* HomeDataBindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataBindingExtension.swift; sourceTree = "<group>"; };
+		D9A1E2D524E58B2A00577345 /* OriginalImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalImageViewModel.swift; sourceTree = "<group>"; };
 		DC5A5EAE75C330363578ADC0 /* Pods-TaskAmaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskAmaz.debug.xcconfig"; path = "Target Support Files/Pods-TaskAmaz/Pods-TaskAmaz.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,6 +361,7 @@
 		D9A1E2C924E4221E00577345 /* Original Image */ = {
 			isa = PBXGroup;
 			children = (
+				D9A1E2D424E58B0D00577345 /* ViewModel */,
 				D9A1E2CA24E4223200577345 /* Controller */,
 			);
 			path = "Original Image";
@@ -370,6 +373,14 @@
 				D9A1E2CB24E4224D00577345 /* OriginalImageViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D9A1E2D424E58B0D00577345 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D9A1E2D524E58B2A00577345 /* OriginalImageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,6 +518,7 @@
 				D9A1E2B424E365F300577345 /* Helper.swift in Sources */,
 				D9A1E2BA24E3EF5D00577345 /* Profile.swift in Sources */,
 				D97BDE4324E3022100EA2452 /* Person.swift in Sources */,
+				D9A1E2D624E58B2A00577345 /* OriginalImageViewModel.swift in Sources */,
 				D9A1E2AC24E34AE600577345 /* UIImageView.swift in Sources */,
 				D97BDE3824E2F3DD00EA2452 /* API.swift in Sources */,
 				D9A1E29724E3140A00577345 /* iButton.swift in Sources */,

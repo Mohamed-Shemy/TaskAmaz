@@ -42,6 +42,14 @@ class HomeViewModel: NetworkManagerInjected
         }
     }
     
+    var isLoading: Bool = false
+    {
+        didSet
+        {
+            isLoading ? startLoadingClosure?() : stopLoadingClosure?()
+        }
+    }
+    
     // MARK: - Closures
     
     var reloadTableViewClosure: (()->())?
@@ -53,7 +61,7 @@ class HomeViewModel: NetworkManagerInjected
     
     func getPopularPersons()
     {
-        self.startLoadingClosure?()
+        self.isLoading = true
         
         self.networkManager.getPopularPersons(in: self.currentPage)
         { (response) in
@@ -73,13 +81,13 @@ class HomeViewModel: NetworkManagerInjected
                     self.errorMessage = "Cannot load more persons!"
             }
             
-            self.stopLoadingClosure?()
+            self.isLoading = false
         }
     }
     
     func searchForPerson(with name: String)
     {
-        self.startLoadingClosure?()
+        self.isLoading = true
         self.searchKey = name
         
         self.networkManager.searchForPerson(with: name, in: self.currentPage)
@@ -100,7 +108,7 @@ class HomeViewModel: NetworkManagerInjected
                     self.errorMessage = "Cannot load more results!"
             }
             
-            self.stopLoadingClosure?()
+            self.isLoading = false
         }
     }
     

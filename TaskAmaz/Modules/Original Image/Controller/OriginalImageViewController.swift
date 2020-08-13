@@ -17,6 +17,8 @@ class OriginalImageViewController: UIViewController
     
     //MARK:- Properties
     
+    var viewModel: OriginalImageViewModel!
+    
     var profileImage: UIImage?
     var profileImagePath: String? = ""
     var isToolViewHiddin: Bool = false
@@ -26,9 +28,7 @@ class OriginalImageViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.setupViews()
-        
-        self.getOriginalImage()
+        self.setupViews()        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle
@@ -41,6 +41,9 @@ class OriginalImageViewController: UIViewController
     private func setupViews()
     {
         self.setupImageView()
+        self.setupDisplayMessageObserver()
+        
+        self.getOriginalImage()
     }
     
     private func setupImageView()
@@ -51,6 +54,11 @@ class OriginalImageViewController: UIViewController
         
         // Set image
         self.profileImageView.image = self.profileImage
+    }
+    
+    private func setupViewModel()
+    {
+        self.viewModel = OriginalImageViewModel()
     }
     
     //MARK:- Methods
@@ -74,35 +82,26 @@ class OriginalImageViewController: UIViewController
         self.toolBarView.isHidden = true
     }
     
-    func saveImage(imageName: String, image: UIImage) -> (Bool, String?)
+    func saveImage(imageName: String, image: UIImage)
     {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-            else { return (false, "Cannot locate directory!") }
-        
-        let fileName = imageName
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
         guard let data = image.jpegData(compressionQuality: 1)
-            else { return (false, "Incorrect data format!") }
+        else
+        {
+            self.showAlert(title: "", message: "Incorrect data format!")
+            return
+        }
         
-        if FileManager.default.fileExists(atPath: fileURL.path)
-        {
-            do
-            {
-                try FileManager.default.removeItem(atPath: fileURL.path)
-            }
-            catch let removeError
-            {
-                return (false, removeError.localizedDescription)
-            }
-        }
-        do
-        {
-            try data.write(to: fileURL)
-            return (true, nil)
-        }
-        catch let error
-        {
-            return (false, error.localizedDescription)
+        self.viewModel.saveImage(with: imageName, data: data)
+    }
+    
+    //MARK: - Observer
+    
+    func setupDisplayMessageObserver()
+    {
+        self.viewModel.displayErrorClosure =
+        {[weak self] () in
+                let errorMessage = self?.viewModel.message ?? "Unkown error"
+                self?.showAlert(title: "Error", message: errorMessage)
         }
     }
     
@@ -119,15 +118,7 @@ class OriginalImageViewController: UIViewController
         if let image = self.profileImageView.image, let filePath = self.profileImagePath
         {
             let fileName = String(filePath.suffix(filePath.count - 1))
-            let (isSaved, msg) = self.saveImage(imageName: fileName, image: image)
-            if isSaved
-            {
-                self.showAlert(title: "Save", message: "Image has been saved")
-            }
-            else
-            {
-                self.showAlert(title: "Error", message: msg ?? "Cannot save this image!")
-            }
+            self.saveImage(imageName: fileName, image: image)
         }
     }
 }
